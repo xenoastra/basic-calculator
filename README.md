@@ -6,4 +6,4 @@ will most likely be made in python but possibly also in C or Java for variety
 
 hopefully can finish it eventually
 
-I had some python code on my laptop for the scientific calculator that I will upload once I find the file
+
