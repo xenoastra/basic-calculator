@@ -1,43 +1,28 @@
-#include <stdio.h>
-int main (void){
-        double num1;
-        double num2;
-        char operator[100] = "";
-        double result;
+int main()
+{
+    double num1;
+    double num2;
+    char oper;
 
-        printf("Enter a number: ");
-        scanf("%le", &num1);
-        printf("Enter a second number: ");
-        scanf("%le", &num2);
-        printf("Enter a mathematical operator (+ - / *): ");
-        scanf("%s", operator);
+    printf("Enter a number: ");
+    scanf("%lf", &num1);
+    printf("Enter an operator: ");
+    scanf(" %c", &oper);
+    printf("Enter another number: ");
+    scanf("%lf", &num2);
 
+   
+   if(oper == '+'){
+       printf("%f", num1 + num2);
+   } else if(oper == '-'){
+       printf("%f", num1 - num2);
+   } else if(oper == '*'){
+       printf("%f", num1 * num2);
+   } else if(oper == '/'){
+       printf("%f", num1 / num2);
+   } else{
+       printf("Invalid operator");
+   }
 
-        if (operator == "+"){
-                result = num1 + num2 ;
-                printf("The result is %f \n" , result);
-        }
-        if (operator == "-"){
-                result = (num2 - num1);
-                printf("The result is %f \n" , result);
-
-        }
-        if (operator == "*"){
-                result = (num1 * num2);
-                printf("The result is %f \n" , result);
-
-        }
-        if(operator == "/"){
-                result = (num2 / num1);
-                printf("The result is %f \n" , result);
-
-        }
-        else{
-                printf("Enter a valid operator ");
-        }
-
-return 0;
-
-
-
+    return 0;
 }
