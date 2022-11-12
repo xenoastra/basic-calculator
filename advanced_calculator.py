@@ -60,10 +60,8 @@ def repeat():
     return str2
 #returns the function calculator with the answer
 
-print("           ")
-print("Welcome to Xenoastra's Calculator")
-print("you can calculate addition, subtraction, square root, powers, factorials, trigonometry and logarithms ")
-print("                                               ")
+print("\nWelcome to Xenoastra's Calculator\nyou can calculate addition, subtraction, square root, powers, factorials, trigonometry and logarithms\n")
+
 print(repeat())
 
 calculator = int(input("would you like do calculate anything else? (enter 0 for no, 1 for yes) "))
