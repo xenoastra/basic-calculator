@@ -1,82 +1,86 @@
 
-def repeat():
-    #this statement defines the function called repeat which is going to be called if user asaks to use calculator again
-    num1 = float(input("Enter first number: "))
-    #this can also take decimal values
-    #num1 is the name of the variable that will be the first user input
-    op = (input("Enter operator: (+, -, /, *, sqrt, sqr, pow, fac, sin, cos, tan, log, cube, cubrt) "))
-    #Here the user can enter varous operators. + for addition, _ for subtraction, / for division, * for multiplication, sqrt for square root
-    #sqr for square, pow for power, fac for factorial, sin/cos/tan for trigonometry, log for logarithms, cube to cube the number, cubrt to cube root
-    num2 = float(input("Enter second number: "))
-    #num2 is the second number that the  user will input and can also be a decimal
+import tkinter as tk
 
-    def calculator():
-        #defines the function calculator which will be called later on
-        str1 = "Invalid operator"
-        #if they enter an invalid operator then we will return str1
-        import math
-        #this imports extra math statements that will be used later on
-        if op == "+":
-        #if the operator is + this will add the 2 numbers
-            return num1 + num2
-        #returns the sum of the two numbers
-        elif op == "-":
-            # if the operator is - this will subtract the 2 numbers
-            return num1 - num2
-        #returns the difference of the two numbers
-        elif op == "/":
-            return num1 / num2
-        elif op == "*":
-            return num1 * num2
-        elif op == "sqrt":
-            return math.sqrt(num1), math.sqrt(num2)
-        elif op == "pow":
-            return math.pow(num1, num2)
-        elif op == "fac":
-            return math.factorial(num1), math.factorial(num2)
-        #returns the factorial of the two numbers
-        elif op == "sin":
-            return math.sin(num1), math.sin(num2)
-        #returns sinx, siny where x is num1 and y is num2
-        elif op == "cos":
-            return math.cos(num1), math.cos(num2)
-        elif op == "tan":
-            return math.tan(num1), math.tan(num2)
-        elif op == "log":
-            return math.log(num1,num2)
-        elif op == "cube":
-            return num1 ** 3, num2 ** 3
-        #cubes the two numbers
-        elif op == "cubrt":
-            return num1 *(1/3) , num2 *(1/3)
-        elif op == "sqr":
-            return num1 * num1, num2 * num2
-        #squares the two numbers
-        else:
-            return str1
-        #if not it returns the invalid statement
+calc = ""
 
-    str2 = f"The answer is {calculator()}"
-    return str2
-#returns the function calculator with the answer
+def add_to_calc(symbol):
+    global calc
+    calc += str(symbol)
+    result.delete(1.0, "end")
+    result.insert(1.0, calc)
 
-print("\nWelcome to Xenoastra's Calculator\nyou can calculate addition, subtraction, square root, powers, factorials, trigonometry and logarithms\n")
+def evaluate():
+    global calc
+    try:
+        calc = str(eval(calc))
+        result.delete(1.0, "end")
+        result.insert(1.0, calc)
+    except:
+        clear()
+        result.insert(1.0, "Error")
+    
+def clear():
+    global calc
+    calc = ""
+    result.delete(1.0, "end")
 
-print(repeat())
+def backspace():
+    global calc
+    calc = calc[:-1]
+    result.delete(1.0, "end")
+    result.insert(1.0, calc)
 
-calculator = int(input("would you like do calculate anything else? (enter 0 for no, 1 for yes) "))
-#this can only take integers
-#If user types in 1, it will call function repeat and start over
-if calculator == 1:
-    while calculator == 1:
-        print(repeat())
-        calculator = int(input("would you like do calculate anything else? (enter 0 for no, 1 for yes) "))
-        if calculator == 0:
-            print("Have a great day, I hope you enjoyed the calculator, calc-you-later!")
-#this while loop will run at the end of the program asking if the user wants to input anything else
-elif calculator == 0:
-    print("Have a great day, I hope you enjoyed the calculator!, calc-you-later")
-    # If user types in 0, it will print out have a good day
-else:
-    print("Invalid response")
-    #if user types anything else, it will come up as invalid response
+root = tk.Tk()
+root.geometry("320x375") # size of calculator
+root.configure(bg="#7BC6C0")
+
+
+result = tk.Text(root, height=2, width=16, font=("Helvetica", 24))
+result.grid(columnspan=5)
+result.configure(bg="#C9F4EE")
+
+button_1 = tk.Button(root, text="1", command=lambda: add_to_calc(1), width=5, font=("Helvetica", "14"),bg="#46C2B8")# lambda is needed
+button_1.grid(row=2, column=1)
+button_2 = tk.Button(root, text="2", command=lambda: add_to_calc(2), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_2.grid(row=2, column=2)
+button_3 = tk.Button(root, text="3", command=lambda: add_to_calc(3), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_3.grid(row=2, column=3)
+button_4 = tk.Button(root, text="4", command=lambda: add_to_calc(4), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_4.grid(row=3, column=1)
+button_5 = tk.Button(root, text="5", command=lambda: add_to_calc(5), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_5.grid(row=3, column=2)
+button_6 = tk.Button(root, text="6", command=lambda: add_to_calc(6), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_6.grid(row=3, column=3)
+button_7 = tk.Button(root, text="7", command=lambda: add_to_calc(7), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_7.grid(row=4, column=1)
+button_8 = tk.Button(root, text="8", command=lambda: add_to_calc(8), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_8.grid(row=4, column=2)
+button_9 = tk.Button(root, text="9", command=lambda: add_to_calc(9), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_9.grid(row=4, column=3)
+button_0 = tk.Button(root, text="0", command=lambda: add_to_calc(0), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_0.grid(row=5, column=2)
+
+button_bs = tk.Button(root, text="Back", command=lambda: backspace(), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_bs.grid(row=7, column=3)
+
+button_plus = tk.Button(root, text="+", command=lambda: add_to_calc("+"), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_plus.grid(row=7, column=2)
+button_minus = tk.Button(root, text="-", command=lambda: add_to_calc("-"), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_minus.grid(row=6, column=1)
+button_div = tk.Button(root, text="/", command=lambda: add_to_calc("/"), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_div.grid(row=6, column=2)
+button_mul = tk.Button(root, text="*", command=lambda: add_to_calc("*"), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_mul.grid(row=6, column=3)
+
+button_open = tk.Button(root, text="(", command=lambda: add_to_calc("("), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_open.grid(row=5, column=1)
+button_close = tk.Button(root, text=")", command=lambda: add_to_calc(")"), width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_close.grid(row=5, column=3)
+button_clear = tk.Button(root, text="clear", command=clear, width=5, font=("Helvetica", "14"),bg="#46C2B8")
+button_clear.grid(row=7, column=1)
+
+
+button_eq = tk.Button(root, text="=", command=evaluate, width=8, font=("Helvetica", "14"),bg="#46C2B8")
+button_eq.grid(row=8, column=2)
+
+root.mainloop() # GUI objects
